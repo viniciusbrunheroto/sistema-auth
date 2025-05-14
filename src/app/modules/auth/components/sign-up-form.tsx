@@ -42,7 +42,9 @@ export default function SignUpForm() {
           </div>
         </CardContent>
         <CardFooter className="flex justify-between mt-5">
-          <Button type="submit">Criar Conta</Button>
+          <Button type="submit" className="cursor-pointer">
+            Criar Conta
+          </Button>
           <Link
             href="/portal/login"
             className={buttonVariants({ variant: 'link' })}

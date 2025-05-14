@@ -35,7 +35,9 @@ export default function LoginForm() {
           </div>
         </CardContent>
         <CardFooter className="flex justify-between mt-5">
-          <Button type="submit">Entrar</Button>
+          <Button type="submit" className="cursor-pointer">
+            Entrar
+          </Button>
           <Link
             href="/portal/cadastro"
             className={buttonVariants({ variant: 'link' })}
