@@ -10,7 +10,7 @@
 - Banco de Dados PostreSQL
 - Prisma
 - Shadcn/ui para fazer o formulário
-- JWT Tokens com JOSE
+- JWT Tokens com JOSE (https://www.npmjs.com/package/jose)
 - Form Actions do Next.js
 
 ## 💛 Contato
