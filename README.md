@@ -1,6 +1,8 @@
 # Aplicação com cadastro, login e validação da sessão do usuário
 
-![preview](./.github/form-projeto.png)
+<p align="center" dir="auto">
+  <img alt="Projeto 01" src=".github/form-projeto.png" width="100%" style="max-width: 100%;"></a>
+</p>
 
 ## 🛠 Tecnologias
 
