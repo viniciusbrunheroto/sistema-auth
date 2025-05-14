@@ -1,10 +1,14 @@
-import { Suspense } from 'react'
-import PortalClient from '@/app/modules/portal/components/portal-client'
+import Link from 'next/link'
+import UsersList from '../modules/users/components/users-list'
 
 export default function PortalPage() {
   return (
-    <Suspense fallback={null}>
-      <PortalClient />
-    </Suspense>
+    <main className="flex min-h-screen flex-col items-center p-24">
+      <h1 className="text-4xl font-bold">Página do Portal</h1>
+
+      <UsersList />
+
+      <Link href="/api/logout">Logout</Link>
+    </main>
   )
 }
