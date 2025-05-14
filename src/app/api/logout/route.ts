@@ -1,7 +1,7 @@
 import AuthService from '@/app/modules/auth/services/auth-service'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export function GET(req: NextResponse) {
+export function GET(req: NextRequest) {
   AuthService.destroySession()
 
   return NextResponse.redirect(new URL('/portal/login', req.url))
