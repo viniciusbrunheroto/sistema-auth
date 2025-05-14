@@ -14,14 +14,20 @@ async function createAccount(formData: FormData) {
 
   const hashPassword = await bcrypt.hash(password, 10)
 
-  await prisma.user.create({
-    data: {
-      name,
-      email,
-      password: hashPassword,
-    },
-  })
-  redirect('/portal/login')
+  try {
+    await prisma.user.create({
+      data: {
+        name,
+        email,
+        password: hashPassword,
+      },
+    })
+  } catch (e) {
+    console.error('Erro ao criar conta:', e)
+    redirect('/portal/cadastro?error=1')
+  }
+
+  redirect('/portal/login?success=signup')
 }
 
 async function login(formData: FormData) {
@@ -37,14 +43,14 @@ async function login(formData: FormData) {
 
   if (!user) {
     console.log('Usuário não encontrado!')
-    redirect('/portal/login')
+    redirect('/portal/login?error=invalid-user')
   }
 
   const isMatch = await bcrypt.compare(password, user.password)
 
   if (!isMatch) {
     console.log('Usuário ou senha inválidos')
-    redirect('/portal/login')
+    redirect('/portal/login?error=invalid-login')
   }
 
   await AuthService.createSessionToken({
@@ -53,7 +59,7 @@ async function login(formData: FormData) {
     email: user.email,
   })
 
-  redirect('/portal')
+  redirect('/portal?success=login')
 }
 const AuthActions = {
   createAccount,
