@@ -41,7 +41,7 @@ export default function SignUpForm() {
             </div>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between">
+        <CardFooter className="flex justify-between mt-5">
           <Button type="submit">Criar Conta</Button>
           <Link
             href="/portal/login"
