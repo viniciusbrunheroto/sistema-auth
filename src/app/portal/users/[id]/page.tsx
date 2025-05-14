@@ -1,7 +1,10 @@
-export default function PortalUserDetail({
+export default async function PortalUserDetail({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{
+    id: string
+  }>
 }) {
-  return <div> {params.id}</div>
+  const { id } = await params
+  return <div>{id}</div>
 }
