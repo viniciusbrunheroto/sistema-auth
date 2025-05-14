@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { FaGithub } from 'react-icons/fa6'
 
 export default function Home() {
   return (
@@ -16,6 +17,17 @@ export default function Home() {
           Crie uma conta
         </Link>
       </nav>
+
+      <Link
+        href="https://github.com/viniciusbrunheroto/sistema-auth"
+        target="_blank"
+        className="hover:text-blue-500 transition-all duration-300 py-4 inline-block"
+      >
+        <span className="flex gap-2 items-center underline">
+          {' '}
+          Acessar esse projeto no <FaGithub size={30} />
+        </span>
+      </Link>
     </main>
   )
 }
