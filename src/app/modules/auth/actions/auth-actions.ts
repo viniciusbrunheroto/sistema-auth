@@ -24,10 +24,10 @@ async function createAccount(formData: FormData) {
     })
   } catch (e) {
     console.error('Erro ao criar conta:', e)
-    redirect('/portal/cadastro?error=1')
+    redirect('/portal/cadastro')
   }
 
-  redirect('/portal/login?success=signup')
+  redirect('/portal/login')
 }
 
 async function login(formData: FormData) {
@@ -43,14 +43,14 @@ async function login(formData: FormData) {
 
   if (!user) {
     console.log('Usuário não encontrado!')
-    redirect('/portal/login?error=invalid-user')
+    redirect('/portal/login')
   }
 
   const isMatch = await bcrypt.compare(password, user.password)
 
   if (!isMatch) {
     console.log('Usuário ou senha inválidos')
-    redirect('/portal/login?error=invalid-login')
+    redirect('/portal/login')
   }
 
   await AuthService.createSessionToken({
@@ -59,7 +59,7 @@ async function login(formData: FormData) {
     email: user.email,
   })
 
-  redirect('/portal?success=login')
+  redirect('/portal')
 }
 const AuthActions = {
   createAccount,
