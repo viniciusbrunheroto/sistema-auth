@@ -1,8 +1,6 @@
 # Aplicação que faz validação de sessão com cadastro, login e validação da sessão do usuário
 
-![preview](./.github/nlw-journey-react.png)
-
-Projeto construído do evento Next Level Week da Rocketseat.
+![preview](./.github/form-projeto.png)
 
 ## 🛠 Tecnologias
 
