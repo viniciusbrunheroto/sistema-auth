@@ -1,0 +1,11 @@
+version: '3'
+
+services: 
+  api-auth-pg:
+    image: bitnami/postgresql
+    ports: 
+      - 5432:5432 
+    environment:
+      - POSTGRESQL_USERNAME=vinicius-api-auth
+      - POSTGRESQL_PASSWORD=MNJ@dX7Etu6W
+      - POSTGRESQL_DATABASE=apiauth
