@@ -1,4 +1,4 @@
-# Aplicação que faz validação de sessão com cadastro, login e validação da sessão do usuário
+# Aplicação com cadastro, login e validação da sessão do usuário
 
 ![preview](./.github/form-projeto.png)
 
