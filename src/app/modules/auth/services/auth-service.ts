@@ -21,7 +21,7 @@ async function createSessionToken(payload = {}) {
   const cookieStorie = await cookies()
 
   cookieStorie.set('session', session, {
-    expires: new Date((exp as number) * 1000),
+    expires: new Date((exp as number) * 10000),
     path: '/',
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
