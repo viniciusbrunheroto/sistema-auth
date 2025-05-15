@@ -24,8 +24,12 @@ async function createSessionToken(payload = {}) {
     expires: new Date((exp as number) * 1000),
     path: '/',
     httpOnly: true,
-    secure: true,
-    sameSite: 'lax', // ou 'strict'
+    secure: process.env.NODE_ENV === 'production', // Condicional com base no ambiente
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // 'none' para permitir cross-site em produção
+    domain:
+      process.env.NODE_ENV === 'production'
+        ? process.env.COOKIE_DOMAIN || undefined
+        : undefined, // Definir domínio em produção
   })
 }
 
