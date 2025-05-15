@@ -49,18 +49,17 @@ async function isSessionValid() {
 
 async function destroySession() {
   const sessionCookie = await cookies()
-
-  sessionCookie.delete('session')
-  // sessionCookie.set('session', '', {
-  //   path: '/',
-  //   secure: process.env.NODE_ENV === 'production',
-  //   sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-  //   domain:
-  //     process.env.NODE_ENV === 'production'
-  //       ? process.env.COOKIE_DOMAIN || undefined
-  //       : undefined,
-  //   expires: new Date(0), // força expiração
-  // })
+  sessionCookie.set('session', '', {
+    httpOnly: true,
+    path: '/',
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    domain:
+      process.env.NODE_ENV === 'production'
+        ? process.env.COOKIE_DOMAIN || undefined
+        : undefined,
+    expires: new Date(0), // força expiração
+  })
 }
 
 const AuthService = {
