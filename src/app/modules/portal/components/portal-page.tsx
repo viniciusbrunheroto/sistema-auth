@@ -2,7 +2,6 @@
 
 import { useSearchParams } from 'next/navigation'
 import UsersList from '../../users/components/users-list'
-import Link from 'next/link'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 
@@ -25,7 +24,7 @@ export function PortalPage() {
 
       <UsersList />
 
-      <Link href="/api/logout">Logout</Link>
+      <a href="/api/logout">Logout</a>
     </main>
   )
 }
