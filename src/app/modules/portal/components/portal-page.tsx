@@ -13,7 +13,9 @@ export function PortalPage() {
     const success = searchParams.get('success')
 
     if (success === 'login') {
-      toast.success('Login feito com sucesso')
+      toast.success('Login feito com sucesso', {
+        position: 'bottom-right',
+      })
     }
   }, [searchParams])
 
