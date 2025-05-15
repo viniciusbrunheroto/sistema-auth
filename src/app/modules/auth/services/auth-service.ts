@@ -48,27 +48,30 @@ async function isSessionValid() {
 }
 
 async function destroySession() {
-  try {
-    const cookiesStore = await cookies()
+  const cookiesStore = await cookies()
 
-    cookiesStore.set('session', '', {
-      path: '/',
-      expires: new Date(0),
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      domain:
-        process.env.NODE_ENV === 'production'
-          ? process.env.COOKIE_DOMAIN || undefined
-          : undefined,
-      httpOnly: true,
-    })
+  cookiesStore.delete('session')
+  // try {
+  //   const cookiesStore = await cookies()
 
-    console.log('Cookie de sessão excluído no AuthService')
-    return true
-  } catch (error) {
-    console.error('Erro ao excluir sessão:', error)
-    return false
-  }
+  //   cookiesStore.set('session', '', {
+  //     path: '/',
+  //     expires: new Date(0),
+  //     secure: process.env.NODE_ENV === 'production',
+  //     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  //     domain:
+  //       process.env.NODE_ENV === 'production'
+  //         ? process.env.COOKIE_DOMAIN || undefined
+  //         : undefined,
+  //     httpOnly: true,
+  //   })
+
+  //   console.log('Cookie de sessão excluído no AuthService')
+  //   return true
+  // } catch (error) {
+  //   console.error('Erro ao excluir sessão:', error)
+  //   return false
+  // }
 }
 
 const AuthService = {
