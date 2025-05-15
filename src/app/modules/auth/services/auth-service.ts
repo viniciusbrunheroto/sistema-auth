@@ -49,7 +49,21 @@ async function isSessionValid() {
 
 async function destroySession() {
   const sessionCookie = await cookies()
-  sessionCookie.delete('session')
+  sessionCookie.set('session', '', {
+    httpOnly: true, // precisa ser igual ao da criação
+    path: '/',
+    maxAge: 0, // Expira imediatamente
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    domain:
+      process.env.NODE_ENV === 'production'
+        ? process.env.COOKIE_DOMAIN || undefined
+        : undefined,
+    expires: new Date(0), // força expiração no passado
+  })
+
+  console.log('Cookie de sessão excluído no AuthService')
+  return true
 }
 
 const AuthService = {
