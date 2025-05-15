@@ -51,6 +51,7 @@ async function destroySession() {
   const sessionCookie = await cookies()
   sessionCookie.set('session', '', {
     httpOnly: true,
+    maxAge: 0,
     path: '/',
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
