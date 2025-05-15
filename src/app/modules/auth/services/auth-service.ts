@@ -61,6 +61,8 @@ async function destroySession() {
         : undefined,
     expires: new Date(0), // força expiração
   })
+  console.log('Cookie apagado!')
+  return true
 }
 
 const AuthService = {
