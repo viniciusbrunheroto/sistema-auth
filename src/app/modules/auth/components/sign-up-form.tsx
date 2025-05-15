@@ -1,4 +1,4 @@
-import AuthActions from '../actions/auth-actions'
+'use client'
 import {
   Card,
   CardHeader,
@@ -12,8 +12,25 @@ import { Label } from '@/components/ui/label'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
+import { toast } from 'react-toastify'
 
-export default function SignupFormClient() {
+interface SignupFormClientProps {
+  action: (formData: FormData) => Promise<void>
+}
+
+export default function SignupFormClient({ action }: SignupFormClientProps) {
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const error = searchParams.get('error')
+
+    if (error) {
+      toast.error('Email já cadastrado.')
+    }
+  }, [searchParams])
+
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -22,7 +39,7 @@ export default function SignupFormClient() {
           Preencha os campos abaixo para criar uma conta.
         </CardDescription>
       </CardHeader>
-      <form action={AuthActions.createAccount}>
+      <form action={action}>
         <CardContent>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
