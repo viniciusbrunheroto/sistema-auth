@@ -28,7 +28,7 @@ async function createSessionToken(payload = {}) {
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // 'none' para permitir cross-site em produção
     domain:
       process.env.NODE_ENV === 'production'
-        ? process.env.COOKIE_DOMAIN || undefined
+        ? process.env.COOKIE_DOMAIN
         : undefined, // Definir domínio em produção
   })
 }
@@ -48,30 +48,27 @@ async function isSessionValid() {
 }
 
 async function destroySession() {
-  const cookiesStore = await cookies()
+  try {
+    const cookiesStore = await cookies()
 
-  cookiesStore.delete('session')
-  // try {
-  //   const cookiesStore = await cookies()
+    cookiesStore.set('session', '', {
+      path: '/',
+      expires: new Date(0),
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      domain:
+        process.env.NODE_ENV === 'production'
+          ? process.env.COOKIE_DOMAIN
+          : undefined,
+      httpOnly: true,
+    })
 
-  //   cookiesStore.set('session', '', {
-  //     path: '/',
-  //     expires: new Date(0),
-  //     secure: process.env.NODE_ENV === 'production',
-  //     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-  //     domain:
-  //       process.env.NODE_ENV === 'production'
-  //         ? process.env.COOKIE_DOMAIN || undefined
-  //         : undefined,
-  //     httpOnly: true,
-  //   })
-
-  //   console.log('Cookie de sessão excluído no AuthService')
-  //   return true
-  // } catch (error) {
-  //   console.error('Erro ao excluir sessão:', error)
-  //   return false
-  // }
+    console.log('Cookie de sessão excluído no AuthService')
+    return true
+  } catch (error) {
+    console.error('Erro ao excluir sessão:', error)
+    return false
+  }
 }
 
 const AuthService = {
