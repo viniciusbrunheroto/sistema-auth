@@ -60,7 +60,9 @@ export default function LoginFormClient({ action }: LoginFormClientProps) {
     e.preventDefault()
 
     if (!captchaToken) {
-      toast.error('Por favor, verifique o reCAPTCHA.')
+      toast.error('Por favor, verifique o reCAPTCHA.', {
+        position: 'bottom-right',
+      })
       return
     }
 
