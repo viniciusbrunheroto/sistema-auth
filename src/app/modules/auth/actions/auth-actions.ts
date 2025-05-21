@@ -12,6 +12,22 @@ async function createAccount(formData: FormData) {
   const email = formData.get('email') as string
   const password = formData.get('password') as string
 
+  const token = formData.get('recaptchaToken')
+
+  const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+  })
+
+  const data = await res.json()
+
+  if (!data.success) {
+    throw new Error('reCAPTCHA inválido.')
+  }
+
   const hashPassword = await bcrypt.hash(password, 10)
 
   try {
@@ -34,6 +50,22 @@ async function login(formData: FormData) {
   'use server'
   const email = formData.get('email') as string
   const password = formData.get('password') as string
+
+  const token = formData.get('recaptchaToken')
+
+  const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+  })
+
+  const data = await res.json()
+
+  if (!data.success) {
+    throw new Error('reCAPTCHA inválido.')
+  }
 
   const user = await prisma.user.findFirst({
     where: {
