@@ -120,3 +120,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+ul li {
+  list-style-position: inside;
+  list-style-type:disc;
+}
